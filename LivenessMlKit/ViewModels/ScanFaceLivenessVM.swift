@@ -22,12 +22,29 @@ public class ScanFaceLivenessVM: ObservableObject, FaceDetectionCallback {
     @Published public var isFaceDetected: Bool = false
 
     // MARK: - Configuration & Thresholds
-    private var requireStableFrames: Int = 8
-    private var requireStableFailFrames: Int = 3
-    private var successCount: Int = 0
-    private var errorCount: Int = 0
+    private var _requireStableFrames: Int = 8
+    private var _requireStableFailFrames: Int = 3
+    private var _successCount: Int = 0
+    private var _errorCount: Int = 0
     private var failCount: Int = 0
     private var lastErrorType: Int?
+
+    private var requireStableFrames: Int {
+        get { _requireStableFrames }
+        set { _requireStableFrames = newValue }
+    }
+    private var requireStableFailFrames: Int {
+        get { _requireStableFailFrames }
+        set { _requireStableFailFrames = newValue }
+    }
+    private var successCount: Int {
+        get { _successCount }
+        set { _successCount = newValue }
+    }
+    private var errorCount: Int {
+        get { _errorCount }
+        set { _errorCount = newValue }
+    }
 
     // MARK: - Liveness Tracking State
     private var lastLeftEyeOpen: Bool = false
@@ -281,43 +298,47 @@ public class ScanFaceLivenessVM: ObservableObject, FaceDetectionCallback {
                 self.faceLivenessAnalyze = analyzeResult
 
                 if isSuccess {
-                    self.successCount += 1
-                    self.errorCount = 0
+                    self._successCount += 1
+                    self._errorCount = 0
 
-                    if self.blinkDetected || self.headMoved {
-                        self.faceResult = .valid(
-                            boundingBox: face.frame,
-                            faceLivenessAnalyze: analyzeResult
-                        )
-                    } else {
-                        // Face is valid, prompt user for liveness blink confirmation
+                    if self._successCount >= self._requireStableFrames && confidence >= 0.8 {
+                        if self.blinkDetected || self.headMoved {
+                            self.faceResult = .valid(
+                                boundingBox: face.frame,
+                                faceLivenessAnalyze: analyzeResult
+                            )
+                        } else {
+                            // Face is valid, prompt user for liveness blink confirmation
+                            self.faceResult = .inValid(
+                                actionType: FaceValidationResult.FACE_NO_LIVENESS,
+                                message: "\(message)\nPlease blink to confirm liveness",
+                                boundingBox: face.frame
+                            )
+                        }
+                    }
+                } else {
+                    self._successCount = 0
+                    self._errorCount += 1
+
+                    if self._errorCount >= self._requireStableFailFrames {
+                        let statusList = [
+                            FaceValidationResult.FACE_VALID,          // 0
+                            FaceValidationResult.FACE_VALID,          // 1
+                            FaceValidationResult.FACE_HAIR_OVER,       // 2
+                            FaceValidationResult.FACE_HAND_OVER,       // 3
+                            FaceValidationResult.FACE_HAS_HAT,         // 4
+                            FaceValidationResult.FACE_HAS_MASK,        // 5
+                            FaceValidationResult.FACE_HAS_SUNGLASSES   // 6
+                        ]
+
+                        let errorType = statusList.indices.contains(topIndex) ? statusList[topIndex] : FaceValidationResult.FACE_UNKNOWN
+
                         self.faceResult = .inValid(
-                            actionType: FaceValidationResult.FACE_NO_LIVENESS,
-                            message: "\(message)\nPlease blink to confirm liveness",
+                            actionType: errorType,
+                            message: message,
                             boundingBox: face.frame
                         )
                     }
-                } else {
-                    self.successCount = 0
-                    self.errorCount += 1
-
-                    let statusList = [
-                        FaceValidationResult.FACE_VALID,          // 0
-                        FaceValidationResult.FACE_VALID,          // 1
-                        FaceValidationResult.FACE_HAIR_OVER,       // 2
-                        FaceValidationResult.FACE_HAND_OVER,       // 3
-                        FaceValidationResult.FACE_HAS_HAT,         // 4
-                        FaceValidationResult.FACE_HAS_MASK,        // 5
-                        FaceValidationResult.FACE_HAS_SUNGLASSES   // 6
-                    ]
-
-                    let errorType = statusList.indices.contains(topIndex) ? statusList[topIndex] : FaceValidationResult.FACE_UNKNOWN
-
-                    self.faceResult = .inValid(
-                        actionType: errorType,
-                        message: message,
-                        boundingBox: face.frame
-                    )
                 }
             } catch {
                 print("❌ [ScanFaceLivenessVM] Inference error: \(error.localizedDescription)")

@@ -3,11 +3,18 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 110;
+	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		FE42FBBE9D68F33CAE21BF88 /* Pods_LivenessMlKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6812AD86D808FBC134772B9F /* Pods_LivenessMlKit.framework */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXFileReference section */
+		6214EC4BF77F492300DFF5E8 /* Pods-LivenessMlKit.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LivenessMlKit.release.xcconfig"; path = "Target Support Files/Pods-LivenessMlKit/Pods-LivenessMlKit.release.xcconfig"; sourceTree = "<group>"; };
+		6812AD86D808FBC134772B9F /* Pods_LivenessMlKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_LivenessMlKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D377CF913092AAAB008B1BC1 /* LivenessMlKit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LivenessMlKit.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		F0CA8C1E5D66F03F38AF7E3B /* Pods-LivenessMlKit.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LivenessMlKit.debug.xcconfig"; path = "Target Support Files/Pods-LivenessMlKit/Pods-LivenessMlKit.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -21,17 +28,30 @@
 /* Begin PBXFrameworksBuildPhase section */
 		D377CF8E3092AAAB008B1BC1 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
 			files = (
+				FE42FBBE9D68F33CAE21BF88 /* Pods_LivenessMlKit.framework in Frameworks */,
 			);
+			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		682337E5E187CBC98993E8FD /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				6812AD86D808FBC134772B9F /* Pods_LivenessMlKit.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		D377CF883092AAAB008B1BC1 = {
 			isa = PBXGroup;
 			children = (
 				D377CF933092AAAB008B1BC1 /* LivenessMlKit */,
 				D377CF923092AAAB008B1BC1 /* Products */,
+				DBAF158A1C777E76AA98B063 /* Pods */,
+				682337E5E187CBC98993E8FD /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -43,6 +63,15 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		DBAF158A1C777E76AA98B063 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				F0CA8C1E5D66F03F38AF7E3B /* Pods-LivenessMlKit.debug.xcconfig */,
+				6214EC4BF77F492300DFF5E8 /* Pods-LivenessMlKit.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -50,11 +79,16 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = D377CF9C3092AAAC008B1BC1 /* Build configuration list for PBXNativeTarget "LivenessMlKit" */;
 			buildPhases = (
+				17F019E0DBF019B236602D58 /* [CP] Check Pods Manifest.lock */,
 				D377CF8D3092AAAB008B1BC1 /* Sources */,
 				D377CF8E3092AAAB008B1BC1 /* Frameworks */,
 				D377CF8F3092AAAB008B1BC1 /* Resources */,
+				E4B37F1FF19C0CE60E4F4325 /* [CP] Embed Pods Frameworks */,
+				55DF73A9349E52EB0CF2AFE0 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
+			);
+			dependencies = (
 			);
 			fileSystemSynchronizedGroups = (
 				D377CF933092AAAB008B1BC1 /* LivenessMlKit */,
@@ -87,7 +121,6 @@
 				Base,
 			);
 			mainGroup = D377CF883092AAAB008B1BC1;
-			minimizedProjectReferenceProxies = 1;
 			preferredProjectObjectVersion = 77;
 			productRefGroup = D377CF923092AAAB008B1BC1 /* Products */;
 			projectDirPath = "";
@@ -101,21 +134,92 @@
 /* Begin PBXResourcesBuildPhase section */
 		D377CF8F3092AAAB008B1BC1 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
 			files = (
 			);
+			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		17F019E0DBF019B236602D58 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-LivenessMlKit-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		55DF73A9349E52EB0CF2AFE0 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-LivenessMlKit/Pods-LivenessMlKit-resources-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-LivenessMlKit/Pods-LivenessMlKit-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-LivenessMlKit/Pods-LivenessMlKit-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		E4B37F1FF19C0CE60E4F4325 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-LivenessMlKit/Pods-LivenessMlKit-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-LivenessMlKit/Pods-LivenessMlKit-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-LivenessMlKit/Pods-LivenessMlKit-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		D377CF8D3092AAAB008B1BC1 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
 			files = (
 			);
+			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin XCBuildConfiguration section */
-		D377CF9A3092AAAC008B1BC1 /* Debug configuration for PBXProject "LivenessMlKit" */ = {
+		D377CF9A3092AAAC008B1BC1 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -153,7 +257,7 @@
 				DEVELOPMENT_TEAM = 3MH24GFG7Q;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
-				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu17;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -179,7 +283,7 @@
 			};
 			name = Debug;
 		};
-		D377CF9B3092AAAC008B1BC1 /* Release configuration for PBXProject "LivenessMlKit" */ = {
+		D377CF9B3092AAAC008B1BC1 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -217,7 +321,7 @@
 				DEVELOPMENT_TEAM = 3MH24GFG7Q;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu17;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
@@ -236,16 +340,18 @@
 			};
 			name = Release;
 		};
-		D377CF9D3092AAAC008B1BC1 /* Debug configuration for PBXNativeTarget "LivenessMlKit" */ = {
+		D377CF9D3092AAAC008B1BC1 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = F0CA8C1E5D66F03F38AF7E3B /* Pods-LivenessMlKit.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 3MH24GFG7Q;
+				DEVELOPMENT_TEAM = NBSAW3G27X;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSCameraUsageDescription = "Camera access is required for face liveness detection.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -256,7 +362,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.cmcb.LivenessMlKit;
+				PRODUCT_BUNDLE_IDENTIFIER = com.chipmongbank.bankingapp.prod;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				STRING_CATALOG_GENERATE_SYMBOLS = YES;
 				SWIFT_APPROACHABLE_CONCURRENCY = YES;
@@ -268,16 +374,18 @@
 			};
 			name = Debug;
 		};
-		D377CF9E3092AAAC008B1BC1 /* Release configuration for PBXNativeTarget "LivenessMlKit" */ = {
+		D377CF9E3092AAAC008B1BC1 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 6214EC4BF77F492300DFF5E8 /* Pods-LivenessMlKit.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 3MH24GFG7Q;
+				DEVELOPMENT_TEAM = NBSAW3G27X;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSCameraUsageDescription = "Camera access is required for face liveness detection.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -288,7 +396,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.cmcb.LivenessMlKit;
+				PRODUCT_BUNDLE_IDENTIFIER = com.chipmongbank.bankingapp.prod;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				STRING_CATALOG_GENERATE_SYMBOLS = YES;
 				SWIFT_APPROACHABLE_CONCURRENCY = YES;
@@ -306,21 +414,22 @@
 		D377CF8C3092AAAB008B1BC1 /* Build configuration list for PBXProject "LivenessMlKit" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				D377CF9A3092AAAC008B1BC1 /* Debug configuration for PBXProject "LivenessMlKit" */,
-				D377CF9B3092AAAC008B1BC1 /* Release configuration for PBXProject "LivenessMlKit" */,
+				D377CF9A3092AAAC008B1BC1 /* Debug */,
+				D377CF9B3092AAAC008B1BC1 /* Release */,
 			);
+			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
 		D377CF9C3092AAAC008B1BC1 /* Build configuration list for PBXNativeTarget "LivenessMlKit" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				D377CF9D3092AAAC008B1BC1 /* Debug configuration for PBXNativeTarget "LivenessMlKit" */,
-				D377CF9E3092AAAC008B1BC1 /* Release configuration for PBXNativeTarget "LivenessMlKit" */,
+				D377CF9D3092AAAC008B1BC1 /* Debug */,
+				D377CF9E3092AAAC008B1BC1 /* Release */,
 			);
+			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
 	rootObject = D377CF893092AAAB008B1BC1 /* Project object */;
-	validationLevel = 1;
 }

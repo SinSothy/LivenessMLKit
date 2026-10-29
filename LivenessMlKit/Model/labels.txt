@@ -1,0 +1,7 @@
+0_clear_face
+1_clear_eye_with_glass
+2_hair_over_face
+3_hand_over_face
+4_has_hat
+5_has_mask
+6_has_sunglasses

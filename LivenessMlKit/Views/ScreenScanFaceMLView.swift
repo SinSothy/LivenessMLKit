@@ -54,6 +54,8 @@ struct ScreenScanFaceMLView: View {
                     frameWidth: ovalWidth,
                     frameHeight: ovalHeight,
                     offsetY: offsetY,
+                    isFaceDetected: viewModel.isFaceDetected,
+                    isValid: viewModel.faceResult?.isValid ?? false,
                     boundingBox: boundBox
                 )
             }

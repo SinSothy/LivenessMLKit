@@ -19,6 +19,7 @@ public class ScanFaceLivenessVM: ObservableObject, FaceDetectionCallback {
     @Published public var resizedImageBitmap: UIImage?
     @Published public var faceLivenessAnalyze: FaceLivenessAnalyze?
     @Published public var isAnalyzing: Bool = false
+    @Published public var isFaceDetected: Bool = false
 
     // MARK: - Configuration & Thresholds
     private var requireStableFrames: Int = 8
@@ -61,6 +62,9 @@ public class ScanFaceLivenessVM: ObservableObject, FaceDetectionCallback {
 
     public func onFailure(error: Error) {
         print("Face detection failed with error: \(error.localizedDescription)")
+        if self.isFaceDetected {
+            self.isFaceDetected = false
+        }
     }
 
     // MARK: - Core Face Analysis Lifecycle
@@ -74,6 +78,9 @@ public class ScanFaceLivenessVM: ObservableObject, FaceDetectionCallback {
 
         // 1. Check if face is detected
         if results.isEmpty {
+            if self.isFaceDetected {
+                self.isFaceDetected = false
+            }
             _ = emitStableResult(
                 isValid: false,
                 errorType: FaceValidationResult.FACE_UNKNOWN,
@@ -84,6 +91,10 @@ public class ScanFaceLivenessVM: ObservableObject, FaceDetectionCallback {
                 )
             )
             return
+        }
+
+        if !self.isFaceDetected {
+            self.isFaceDetected = true
         }
 
         // 2. Only one face allowed
@@ -388,5 +399,7 @@ public class ScanFaceLivenessVM: ObservableObject, FaceDetectionCallback {
         faceResult = nil
         faceLivenessAnalyze = nil
         resizedImageBitmap = nil
+        isAnalyzing = false
+        isFaceDetected = false
     }
 }
